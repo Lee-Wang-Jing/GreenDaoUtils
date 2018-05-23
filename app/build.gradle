@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+}
+
+
+//添加
+publish {
+    userOrg = 'wangjinggm'//bintray.com用户名
+    groupId = 'com.wangjing'//jcenter上的路径
+    artifactId = 'greendaoutils'//项目名称，经过测试不能大写，大写的话虽然会上传成功，但是gradle会导入失败，具体原因不明
+    publishVersion = '0.0.1'//版本号
+    desc = 'greendaoutils'//描述，不重要
+    website = 'https://github.com/Lee-Wang-Jing/GreenDaoUtils'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+}
